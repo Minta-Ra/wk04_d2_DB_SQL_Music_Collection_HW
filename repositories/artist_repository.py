@@ -12,7 +12,7 @@ def save(artist):
     return artist 
 
 
-# SELECT single artist
+# READ - SELECT single artist
 def select(id):
     artist = None
     sql = "SELECT * FROM artists WHERE id = %s"
@@ -23,7 +23,7 @@ def select(id):
     return artist
 
 
-# SELECT all artists
+# READ - SELECT all artists
 def select_all():
     artists = []
     sql = "SELECT * FROM artists"
@@ -33,3 +33,23 @@ def select_all():
         artist = Artist(row['name'], row['id'])
         artists.append(artist)
     return artists
+
+
+# DELETE all
+def delete_all():
+    sql = "DELETE  FROM artists"
+    run_sql(sql)
+
+
+# DELETE single album
+def delete(id):
+    sql = "DELETE * FROM artists WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
+
+
+# UPDATE
+def update(artist):
+    sql = "UPDATE users SET (name) = (%s) WHERE id = %s"
+    values = [artist.name]
+    run_sql(sql, values)
